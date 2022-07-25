@@ -41,7 +41,7 @@ const options = {
 	sequelize: connection,
 	timestamps: true,
 	freezeTableName: true,
-	modelName: 'messages',
+	modelName: 'blogs',
 };
 
 Blogs.init(schema, options);

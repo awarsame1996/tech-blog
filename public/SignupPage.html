@@ -28,7 +28,7 @@
 		<header>
 			<style>
 				#intro {
-					background-image: url(https://images.unsplash.com/photo-1488229297570-58520851e868?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80);
+					background-image: url(https://images.unsplash.com/photo-1496096265110-f83ad7f96608?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
 					height: 100vh;
 				}
 
@@ -51,11 +51,7 @@
 			>
 				<div class="container-fluid">
 					<!-- Navbar brand -->
-					<a
-						class="navbar-brand nav-link"
-						target="_blank"
-						href="https://mdbootstrap.com/docs/standard/"
-					>
+					<a class="navbar-brand nav-link" href="/">
 						<strong>HOME</strong>
 					</a>
 					<button
@@ -72,33 +68,17 @@
 					<div class="collapse navbar-collapse" id="navbarExample01">
 						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 							<li class="nav-item">
-								<a
-									class="nav-link"
-									href="https://www.youtube.com/channel/UC5CF7mLQZhvx8O5GODZAhdA"
-									rel="nofollow"
-									target="_blank"
-									>DASHBOARD</a
-								>
+								<a class="nav-link" href="/dashboard">DASHBOARD</a>
 							</li>
 						</ul>
 
 						<ul class="navbar-nav d-flex flex-row">
 							<!-- Icons -->
 							<li class="nav-item me-3 me-lg-0">
-								<a
-									class="nav-link"
-									href="https://mdbootstrap.com/docs/standard/"
-									target="_blank"
-									>LOGIN</a
-								>
+								<a class="nav-link" href="/login">LOGIN</a>
 							</li>
 							<li class="nav-item me-3 me-lg-0">
-								<a
-									class="nav-link"
-									href="https://mdbootstrap.com/docs/standard/"
-									target="_blank"
-									>SIGN UP</a
-								>
+								<a class="nav-link" href="/signup">SIGN UP</a>
 							</li>
 						</ul>
 					</div>
@@ -116,27 +96,60 @@
 						<div class="row justify-content-center">
 							<div class="col-xl-5 col-md-8">
 								<form class="bg-white rounded-5 shadow-5-strong p-5">
-									<!-- Email input -->
+									<!-- first name input -->
+									<div class="form-outline mb-4">
+										<input
+											type="input"
+											id="formInput1"
+											class="form-control"
+										/>
+										<label class="form-label" for="formInput1"
+											>first name</label
+										>
+									</div>
+									<!-- last name input -->
+									<div class="form-outline mb-4">
+										<input
+											type="input"
+											id="formInput2"
+											class="form-control"
+										/>
+										<label class="form-label" for="formInput2"
+											>last name</label
+										>
+									</div>
+									<!-- email input -->
 									<div class="form-outline mb-4">
 										<input
 											type="email"
-											id="form1Example1"
+											id="formInput3"
 											class="form-control"
 										/>
-										<label class="form-label" for="form1Example1"
-											>Email address</label
-										>
+										<label class="form-label" for="formInput3"
+											>email address
+										</label>
 									</div>
 
 									<!-- Password input -->
 									<div class="form-outline mb-4">
 										<input
 											type="password"
-											id="form1Example2"
+											id="formInput4"
 											class="form-control"
 										/>
-										<label class="form-label" for="form1Example2"
+										<label class="form-label" for="formInput4"
 											>Password</label
+										>
+									</div>
+									<!-- confirm Password input -->
+									<div class="form-outline mb-4">
+										<input
+											type="password"
+											id="formInput5"
+											class="form-control"
+										/>
+										<label class="form-label" for="formInput5"
+											>Confirm Password</label
 										>
 									</div>
 

@@ -45,7 +45,7 @@ const options = {
 	sequelize: connection,
 	timestamps: true,
 	freezeTableName: true,
-	modelName: 'messages',
+	modelName: 'comments',
 };
 
 Comments.init(schema, options);

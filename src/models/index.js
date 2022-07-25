@@ -11,7 +11,9 @@ User.hasMany(Blogs, {
 	foreignKey: 'user_id',
 });
 
-Comments.belongsTo();
+Comments.belongsTo(Blogs, {
+	foreignKey: 'blog_id'
+});
 
 module.exports = {
 	User,
