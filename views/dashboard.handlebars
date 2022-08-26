@@ -44,16 +44,16 @@
 		<main>
 			<section class="text-center"></section>
 			<!--Section: Content-->
+			{{#each blog}}
 			<div class="card m-5">
 				<div class="card-header d-flex justify-content-between flex-row">
-					<h2>Title</h2>
-					<p>posted by NAME on DATE</p>
+					<h2>{{title}}</h2>
+					<p>posted by {{user.first_name}} on {{formatDate createdAt}}</p>
 				</div>
 				<div class="card-body">
 					<blockquote class="blockquote mb-0">
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Integer posuere erat a ante.
+							{{contents}}
 						</p>
 						</footer>
 					</blockquote>
@@ -65,141 +65,32 @@
 								class="accordion-button"
 								type="button"
 								data-bs-toggle="collapse"
-								data-bs-target="#collapseOne"
-								aria-expanded="true"
-								aria-controls="collapseOne"
+								data-bs-target="#collapse{{id}}"
+								aria-expanded="false"
+								aria-controls="collapse{{id}}"
 							>
 								comments
 							</button>
 						</h2>
 						<div
-							id="collapseOne"
+							id="collapse{{id}}"
 							class="accordion-collapse collapse show"
-							aria-labelledby="headingOne"
+							aria-labelledby="heading{{id}}"
 							data-bs-parent="#accordionExample"
 						>
-							<div class="accordion-body"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-            <div class="card m-5">
-				<div class="card-header d-flex justify-content-between flex-row">
-					<h2>Title</h2>
-					<p>posted by NAME on DATE</p>
-				</div>
-				<div class="card-body">
-					<blockquote class="blockquote mb-0">
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Integer posuere erat a ante.
+							<div class="accordion-body">
+								{{#each comments}}
+								<p>
+							{{text}}
 						</p>
-						</footer>
-					</blockquote>
-				</div>
-				<div class="accordion">
-					<div class="accordion-item">
-						<h2 class="accordion-header" id="heading2">
-							<button
-								class="accordion-button"
-								type="button"
-								data-bs-toggle="collapse"
-								data-bs-target="#collapse2"
-								aria-expanded="true"
-								aria-controls="collapse2"
-							>
-								comments
-							</button>
-						</h2>
-						<div
-							id="collapse2"
-							class="accordion-collapse collapse show"
-							aria-labelledby="heading2"
-							data-bs-parent="#accordionExample"
-						>
-							<div class="accordion-body"></div>
+						{{/each}}
+					
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-            <div class="card m-5">
-				<div class="card-header d-flex justify-content-between flex-row">
-					<h2>Title</h2>
-					<p>posted by NAME on DATE</p>
-				</div>
-				<div class="card-body">
-					<blockquote class="blockquote mb-0">
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Integer posuere erat a ante.
-						</p>
-						</footer>
-					</blockquote>
-				</div>
-				<div class="accordion">
-					<div class="accordion-item">
-						<h2 class="accordion-header" id="headingOne">
-							<button
-								class="accordion-button"
-								type="button"
-								data-bs-toggle="collapse"
-								data-bs-target="#collapseOne"
-								aria-expanded="true"
-								aria-controls="collapseOne"
-							>
-								comments
-							</button>
-						</h2>
-						<div
-							id="collapseOne"
-							class="accordion-collapse collapse show"
-							aria-labelledby="headingOne"
-							data-bs-parent="#accordionExample"
-						>
-							<div class="accordion-body"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-            <div class="card m-5">
-				<div class="card-header d-flex justify-content-between flex-row">
-					<h2>Title</h2>
-					<p>posted by NAME on DATE</p>
-				</div>
-				<div class="card-body">
-					<blockquote class="blockquote mb-0">
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Integer posuere erat a ante.
-						</p>
-						</footer>
-					</blockquote>
-				</div>
-				<div class="accordion">
-					<div class="accordion-item">
-						<h2 class="accordion-header" id="headingOne">
-							<button
-								class="accordion-button"
-								type="button"
-								data-bs-toggle="collapse"
-								data-bs-target="#collapseOne"
-								aria-expanded="true"
-								aria-controls="collapseOne"
-							>
-								comments
-							</button>
-						</h2>
-						<div
-							id="collapseOne"
-							class="accordion-collapse collapse show"
-							aria-labelledby="headingOne"
-							data-bs-parent="#accordionExample"
-						>
-							<div class="accordion-body"></div>
-						</div>
-					</div>
-				</div>
-			</div>
+      {{/each}}
 		</main>
 
 		<!--Footer-->
