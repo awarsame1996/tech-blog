@@ -1,23 +1,17 @@
-const path = require('path');
-
 const renderHomePage = (req, res) => {
-	const filePath = path.join(__dirname, '../../../public/index.html');
-	return res.sendFile(filePath);
+	return res.render('homePage', { currentPage: 'homePage' });
 };
 
 const renderLoginPage = (req, res) => {
-	const filePath = path.join(__dirname, '../../../public/loginPage.html');
-	return res.sendFile(filePath);
+	return res.render('login', { currentPage: 'login' });
 };
 
 const renderSignupPage = (req, res) => {
-	const filePath = path.join(__dirname, '../../../public/signupPage.html');
-	return res.sendFile(filePath);
+	return res.render('signup', { currentPage: 'signup' });
 };
 
 const renderDashboardPage = (req, res) => {
-	const filePath = path.join(__dirname, '../../../public/dashboard.html');
-	return res.sendFile(filePath);
+	return res.render('dashboard', { currentPage: 'dashboard' });
 };
 
 module.exports = {
