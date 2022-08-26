@@ -10,7 +10,6 @@ class User extends Model {
 			id: this.id,
 			first_name: this.first_name,
 			last_name: this.last_name,
-			user_name: this.user_name,
 			email: this.email,
 		};
 	}
@@ -41,14 +40,7 @@ const schema = {
 			len: [2, 40],
 		},
 	},
-	user_name: {
-		type: DataTypes.STRING,
-		allowNull: false,
-		validate: {
-			len: [2, 40],
-		},
-		unique: true,
-	},
+
 	password: {
 		type: DataTypes.STRING,
 		allowNull: false,
