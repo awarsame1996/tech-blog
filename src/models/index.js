@@ -12,7 +12,7 @@ User.hasMany(Blogs, {
 });
 
 Comments.belongsTo(Blogs, {
-	foreignKey: 'blog_id'
+	foreignKey: 'blog_id',
 });
 
 module.exports = {

@@ -8,9 +8,9 @@ class User extends Model {
 	getUser() {
 		return {
 			id: this.id,
-			firstName: this.first_name,
-			lastName: this.last_name,
-			username: this.username,
+			first_name: this.first_name,
+			last_name: this.last_name,
+			user_name: this.user_name,
 			email: this.email,
 		};
 	}
@@ -54,7 +54,6 @@ const schema = {
 		allowNull: false,
 		validate: {
 			len: [5, 60],
-			is: ['^(?=.*d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$'],
 		},
 	},
 	email: {

@@ -19,7 +19,7 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "nodemon src/index.js",
-		"seed": "node src/db/seed.js",
+		"seed": "node src/seeds/index.js",
 		"start": "npm run seed && node src/index.js"
 	},
 	"repository": {
