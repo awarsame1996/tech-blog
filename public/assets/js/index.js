@@ -1,6 +1,7 @@
 const loginForm = $('#login-form');
 const errorText = $('#error-text');
 const signupForm = $('#signup-form');
+const signOut = $('#sign-out');
 
 const handleLogin = async () => {
 	console.log('form connected');
@@ -88,5 +89,24 @@ const handleSignup = async () => {
 	}
 };
 
+const handleSignOut = async () => {
+	event.preventDefault();
+	const options = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		redirect: 'follow',
+	};
+
+	const response = await fetch('/auth/logout', options);
+	if (response.status !== 204) {
+		console.error('Logout failed');
+	} else {
+		window.location.replace('/');
+	}
+};
+
 loginForm.submit(handleLogin);
 signupForm.submit(handleSignup);
+signOut.click(handleSignOut);
