@@ -1,6 +1,4 @@
 const moment = require('moment');
-// const Blog = require('../../models/Blog');
-// const Comments = require('../../models/Comments');
 const { Blogs, Comments, User } = require('../../models');
 
 const createBlog = async (req, res) => {
@@ -23,7 +21,22 @@ const createBlog = async (req, res) => {
 	}
 };
 
-const updateBlog = async (res, req) => {};
+const updateBlog = async (req, res) => {
+	try {
+		const { id, title, contents } = req.body;
+		const blog = await Blogs.findByPk(id);
+		if (!blog) {
+			return res.status(404).json({ message: `blog can't be found` });
+		}
+
+		await Blogs.update({ title, contents }, { where: { id } });
+		return res.status(200).json({ message: 'Post updated' });
+	} catch (error) {
+		console.log(
+			`[ERROR]:YOU WERE SUPPOSE TO FOLLOW THE TRAIN CJ!| ${error.message}`
+		);
+	}
+};
 
 const deleteBlog = async (req, res) => {
 	try {
@@ -66,7 +79,7 @@ const createComment = async (req, res) => {
 	}
 };
 
-const updateComment = async (res, req) => {};
+const updateComment = async (req, res) => {};
 
 const deleteComment = async (req, res) => {
 	try {

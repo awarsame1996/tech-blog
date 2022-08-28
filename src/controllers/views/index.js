@@ -21,9 +21,7 @@ const renderHomePage = async (req, res) => {
 		return comment.get({ plain: true });
 	});
 	const blogs = blogData.map((blog) => {
-		if (blog.user_id === req.session.user.id) {
-			return blog.get({ plain: true });
-		}
+		return blog.get({ plain: true });
 	});
 	const blogInfo = blogs.map((blog) => {
 		comments.map((comment) => {
@@ -85,7 +83,6 @@ const renderDashboardPage = async (req, res) => {
 			}
 			if (comment.user_id === req.session.user.id) {
 				comment.userDelete = true;
-				console.log(comment);
 			}
 			if (comment.user_id !== req.session.user.id) {
 			}
@@ -99,10 +96,29 @@ const renderDashboardPage = async (req, res) => {
 		isLoggedIn: req.session.isLoggedIn,
 	});
 };
+const renderSingleBlogPage = async (req, res) => {
+	const { id } = req.params;
+	const blogData = await Blogs.findByPk(id, {
+		include: [
+			{
+				model: User,
+				attributes: ['first_name', 'last_name'],
+			},
+		],
+	});
+	const blog = blogData.get({ plain: true });
+	console.log(blog);
 
+	return res.render('singleBlog', {
+		currentPage: 'singleBlog',
+		blog,
+		isLoggedIn: req.session.isLoggedIn,
+	});
+};
 module.exports = {
 	renderHomePage,
 	renderLoginPage,
 	renderSignupPage,
 	renderDashboardPage,
+	renderSingleBlogPage,
 };

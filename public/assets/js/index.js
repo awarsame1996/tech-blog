@@ -6,6 +6,7 @@ const removeLink = $('.link-grey');
 const createComment = $('.comment-btn');
 const blogForm = $('#blog-form');
 const blogButtons = $('.btn-container');
+const blogUpdater = $('#save-btn');
 
 const handleLogin = async () => {
 	console.log('form connected');
@@ -196,6 +197,7 @@ const handleBlogChanges = async (event) => {
 	if (id === 'edit-btn') {
 		const blogId = $(target).attr('data-value');
 		console.log(blogId);
+		window.location.replace(`/dashboard/${blogId}`);
 	} else if (id === 'delete-btn') {
 		const blogId = $(target).attr('data-value');
 		console.log(blogId);
@@ -223,6 +225,36 @@ const handleBlogChanges = async (event) => {
 	}
 };
 
+const handleBlogUpdate = async (event) => {
+	event.preventDefault;
+	const target = event.target;
+	const id = $(target).attr('data-value');
+	const title = $(`#title`).val();
+	const contents = $(`#text`).val();
+	const payload = {
+		id,
+		title,
+		contents,
+	};
+
+	const options = {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		redirect: 'follow',
+		body: JSON.stringify(payload),
+	};
+
+	const response = await fetch(`/api/blogs/${id}`, options);
+
+	if (response.status == 200) {
+		window.location.replace('/dashboard');
+	} else {
+		errorText.append('Failed to update blog. Please try again.');
+	}
+};
+
 loginForm.submit(handleLogin);
 signupForm.submit(handleSignup);
 signOut.click(handleSignOut);
@@ -230,3 +262,4 @@ removeLink.click(handleCommentDelete);
 createComment.click(createCommentById);
 blogForm.submit(createBlog);
 blogButtons.click(handleBlogChanges);
+blogUpdater.click(handleBlogUpdate);
