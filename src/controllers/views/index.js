@@ -107,8 +107,26 @@ const renderSingleBlogPage = async (req, res) => {
 		],
 	});
 	const blog = blogData.get({ plain: true });
-	console.log(blog);
 
+	const commentData = await Comments.findAll({
+		include: [
+			{
+				model: User,
+				attributes: ['first_name'],
+			},
+		],
+	});
+	let comments = commentData.map((comment) => {
+		return comment.get({ plain: true });
+	});
+	console.log(comments);
+	blog.comments = [];
+	const blogInfo = comments.map((comment) => {
+		if (comment.blog_id === blog.id) {
+			blog.comments.push(comment);
+		}
+	});
+	console.log(blog);
 	return res.render('singleBlog', {
 		currentPage: 'singleBlog',
 		blog,

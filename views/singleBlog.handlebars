@@ -100,6 +100,25 @@
               </div>
 			  </div>
 
+			   <h4 class="mb-4 text-uppercase">comments</h4>
+			   {{#each blog.comments}}
+			   								<div class="card-body bg-white p-4">
+											<h6 class="fw-bold mb-1">{{user.first_name}}</h6>
+											<div class="d-flex align-items-center mb-3">
+												<p class="mb-0">
+													{{formatDate createdAt}}
+												</p>
+											
+											</div>
+											<p class="mb-0">
+												{{text}}
+
+											</p>
+										</div>
+									
+
+								<hr class="my-0" style="height: 1px" />
+						{{/each}}
             </div>
           </div>
         </div>
