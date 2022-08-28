@@ -2,6 +2,8 @@ const loginForm = $('#login-form');
 const errorText = $('#error-text');
 const signupForm = $('#signup-form');
 const signOut = $('#sign-out');
+const removeLink = $('.link-grey');
+const createComment = $('.comment-btn');
 
 const handleLogin = async () => {
 	console.log('form connected');
@@ -91,6 +93,7 @@ const handleSignup = async () => {
 
 const handleSignOut = async () => {
 	event.preventDefault();
+	let response;
 	const options = {
 		method: 'POST',
 		headers: {
@@ -99,14 +102,65 @@ const handleSignOut = async () => {
 		redirect: 'follow',
 	};
 
-	const response = await fetch('/auth/logout', options);
+	response = await fetch('/auth/logout', options);
 	if (response.status !== 204) {
 		console.error('Logout failed');
 	} else {
 		window.location.replace('/');
 	}
 };
+const handleCommentDelete = async (event) => {
+	const target = event.target;
+
+	const id = $(target).attr('data-value');
+	response = await fetch(`/api/comments/${id}`, {
+		method: 'DELETE',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+	console.log('working');
+
+	if (response.status !== 200) {
+		console.error('Delete failed');
+	} else {
+		location.reload();
+		console.error('Delete Success');
+	}
+};
+const createCommentById = async (event) => {
+	event.preventDefault();
+	const target = event.target;
+	const blog_id = $(target).attr('data-value-blog');
+	const text = $(`#addComment${blog_id}`).val();
+
+	const payload = {
+		text,
+		blog_id,
+	};
+	console.log(payload);
+
+	const options = {
+		method: 'POST',
+		body: JSON.stringify(payload),
+		headers: {
+			'content-Type': 'application/json',
+		},
+	};
+
+	const response = await fetch('/api/comments', options);
+	const data = await response.json();
+
+	console.log(data);
+	if (data.success) {
+		window.location.reload();
+	} else {
+		errorText.append('Failed to create a new comment1. Please try again.');
+	}
+};
 
 loginForm.submit(handleLogin);
 signupForm.submit(handleSignup);
 signOut.click(handleSignOut);
+removeLink.click(handleCommentDelete);
+createComment.click(createCommentById);

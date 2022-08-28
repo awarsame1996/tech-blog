@@ -1,12 +1,7 @@
 const { Router } = require('express');
+const { createComment, deleteComment } = require('../../controllers/api');
 
 const router = Router();
-
-const {
-	createComment,
-
-	deleteComment,
-} = require('../../controllers/api/comments');
 
 router.post('/', createComment);
 

@@ -79,18 +79,18 @@
 								<div class="col-md-8 col-lg-6">
     	<div class="card shadow-0 border" style="background-color: #f0f2f5;">     
         <div class="form-outline mb-4">
-          <input type="text" id="addComment" class="form-control" placeholder="Type comment..." />
-          <label class="form-label" for="addComment">+ Add a comment</label>
+          <input type="text" id="addComment{{id}}" class="form-control" placeholder="Type comment..." />
+          <label class="form-label" for="addComment{{id}}">+ Add a comment</label>
 		  	
 		</div>
         </div>
 		<div class="d-flex justify-content-end mt-2 pt-1">
-              <button type="button" class="btn btn-primary btn-sm">Post comment</button>
+              <button type="submit" data-value-blog="{{id}}" class=" comment-btn btn btn-primary btn-sm">Post comment</button>
             </div>
 	
 								{{#each comments}}
 							
-							 <div class="card my-3">
+							 <div class="card my-3" >
           <div class="card-body">
             <div class="d-flex flex-start">
              
@@ -106,7 +106,7 @@
 					{{#if userDelete}}
                   <p class="small mb-0" style="color: #aaa;">
 					
-                    <a href="#!" type class="link-grey">Remove</a> •
+                    <a href="#!" data-value="{{id}}" class="link-grey">Remove</a> •
                   </p>
 				  {{/if}}
                  

@@ -1,21 +1,11 @@
 const { Router } = require('express');
-
 const {
-	getAllBlogs,
-	getSingleBlog,
-	getMyBlog,
 	createBlog,
 	updateBlog,
 	deleteBlog,
-} = require('../../controllers/api/blogs');
+} = require('../../controllers/api');
 
 const router = Router();
-
-router.get('/', getAllBlogs);
-
-router.get('/:id', getSingleBlog);
-
-router.get('/:id', getMyBlog);
 
 router.post('/', createBlog);
 
