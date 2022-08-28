@@ -5,16 +5,14 @@ const { Blogs, Comments, User } = require('../../models');
 
 const createBlog = async (req, res) => {
 	try {
-		const { blog_title, blog_description, blog_text } = req.body;
+		const { title, contents } = req.body;
 
 		const user_id = req.session.user.id;
 
-		await Blog.create({
+		await Blogs.create({
 			user_id,
-			blog_title,
-
-			blog_text,
-			blog_description,
+			title,
+			contents,
 		});
 
 		return res.json({ success: true });
@@ -27,7 +25,25 @@ const createBlog = async (req, res) => {
 
 const updateBlog = async (res, req) => {};
 
-const deleteBlog = async (res, req) => {};
+const deleteBlog = async (req, res) => {
+	try {
+		const { id } = req.params;
+		console.log(id);
+		const blog = await Blogs.findByPk(id);
+		if (!blog) {
+			res.status(404).json({
+				message: '[ERROR]:YOU WERE SUPPOSE TO FOLLOW THE TRAIN abdi!',
+			});
+			return;
+		}
+		await Blogs.destroy({ where: { id } });
+		res.status(200).json({ success: true });
+	} catch (error) {
+		console.log(
+			`[ERROR]:YOU WERE SUPPOSE TO FOLLOW THE TRAIN CJ!| ${error.message}`
+		);
+	}
+};
 
 const createComment = async (req, res) => {
 	console.log('were here');

@@ -21,7 +21,9 @@ const renderHomePage = async (req, res) => {
 		return comment.get({ plain: true });
 	});
 	const blogs = blogData.map((blog) => {
-		return blog.get({ plain: true });
+		if (blog.user_id === req.session.user.id) {
+			return blog.get({ plain: true });
+		}
 	});
 	const blogInfo = blogs.map((blog) => {
 		comments.map((comment) => {

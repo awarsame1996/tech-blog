@@ -4,6 +4,8 @@ const signupForm = $('#signup-form');
 const signOut = $('#sign-out');
 const removeLink = $('.link-grey');
 const createComment = $('.comment-btn');
+const blogForm = $('#blog-form');
+const blogButtons = $('.btn-container');
 
 const handleLogin = async () => {
 	console.log('form connected');
@@ -158,9 +160,73 @@ const createCommentById = async (event) => {
 		errorText.append('Failed to create a new comment1. Please try again.');
 	}
 };
+const createBlog = async () => {
+	console.log('clicked');
+	const title = $('#title').val();
+	const contents = $('#text').val();
+
+	const payload = {
+		title,
+		contents,
+	};
+	const options = {
+		method: 'POST',
+		body: JSON.stringify(payload),
+		headers: {
+			'content-Type': 'application/json',
+		},
+	};
+
+	const response = await fetch('/api/blogs', options);
+	const data = await response.json();
+
+	console.log(data);
+	if (data.success) {
+		window.location.reload();
+	} else {
+		errorText.append('Failed to create a new comment1. Please try again.');
+	}
+};
+
+const handleBlogChanges = async (event) => {
+	event.preventDefault;
+	const target = event.target;
+	const id = $(target).attr('data-attribute');
+	console.log(id);
+	if (id === 'edit-btn') {
+		const blogId = $(target).attr('data-value');
+		console.log(blogId);
+	} else if (id === 'delete-btn') {
+		const blogId = $(target).attr('data-value');
+		console.log(blogId);
+		const confirmed = confirm(
+			'Are you sur you want to delete this comment? This cannot be undone.'
+		);
+		if (confirmed) {
+			const options = {
+				method: 'DELETE',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				redirect: 'follow',
+			};
+
+			response = await fetch(`/api/blogs/${blogId}`, options);
+
+			if (response.status !== 200) {
+				console.error('Delete failed');
+			} else {
+				location.reload();
+				console.error('Delete completed');
+			}
+		}
+	}
+};
 
 loginForm.submit(handleLogin);
 signupForm.submit(handleSignup);
 signOut.click(handleSignOut);
 removeLink.click(handleCommentDelete);
 createComment.click(createCommentById);
+blogForm.submit(createBlog);
+blogButtons.click(handleBlogChanges);

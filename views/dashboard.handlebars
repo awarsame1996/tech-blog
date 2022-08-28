@@ -30,7 +30,7 @@
 					<div class="container">
 						<div class="row justify-content-center">
 							<div class="text-center text-white mt-10">
-								<h1>BLOGS</h1>
+								<h1>DASHBOARD</h1>
 							</div>
 						</div>
 					</div>
@@ -39,10 +39,36 @@
 			<!-- Background image -->
 		</header>
 		<main>
-			<section class="text-center"></section>
+			<section class="text-center">
+		<form class="p-4 p-md-5 text-center text-lg-start shadow-1-strong rounded m-4" id="blog-form">
+  <!-- Title input -->
+  <div class="form-outline mb-4">
+    <input type="text" id="title" class="form-control" />
+    <label class="form-label" for="title">Title</label>
+  </div>
+
+ 
+  <!-- Message input -->
+  <div class="form-outline mb-4">
+    <textarea class="form-control" id="text" rows="3"></textarea>
+    <label class="form-label" for="text">Text</label>
+  </div>
+
+
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-primary btn-block mb-4">Post</button>
+</form>
+			</section>
+			<div class="text-center text mt-10">
+								<h1>MY BLOGS</h1>
+							</div>
 			<!--Section: Content-->
 			{{#each blogInfo}}
 			<div class="card m-5">
+				<div class="d-flex justify-content-end btn-container">
+  <button class="btn btn-info m-2" data-attribute="edit-btn" data-value="{{id}}" type="button"><i class="far fa-edit"></i></button>
+  <button class="btn btn-danger m-2" data-attribute="delete-btn" data-value="{{id}}" type="button"><i class="fas fa-trash-alt"></i></button>
+</div>
 				<div class="card-header d-flex justify-content-between flex-row">
 					<h2>{{title}}</h2>
 					<p>posted by {{user.first_name}} on {{formatDate createdAt}}</p>
@@ -117,7 +143,7 @@
         </div>
 
 						{{/each}}
-					
+
 							</div>
 						</div>
 					</div>
