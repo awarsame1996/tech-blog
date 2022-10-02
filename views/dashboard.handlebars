@@ -1,0 +1,178 @@
+
+		<header>
+			<style>
+				#intro {
+					background-image: url(https://images.unsplash.com/photo-1496096265110-f83ad7f96608?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
+					height: 30vh;
+				}
+
+				/* Height for devices larger than 576px */
+				@media (min-width: 992px) {
+					#intro {
+						margin-top: -58.59px;
+					}
+				}
+
+				.navbar .nav-link {
+					color: #fff !important;
+				}
+			</style>
+
+  {{> privateNavbar }}
+
+
+			<!-- Background image -->
+			<div id="intro" class="bg-image shadow-2-strong">
+				<div
+					class="mask d-flex align-items-center h-100"
+					style="background-color: rgba(0, 0, 0, 0.6)"
+				>
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="text-center text-white mt-10">
+								<h1>DASHBOARD</h1>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Background image -->
+		</header>
+		<main>
+			<section class="text-center">
+		<form class="p-4 p-md-5 text-center text-lg-start shadow-1-strong rounded m-4" id="blog-form">
+  <!-- Title input -->
+  <div class="form-outline mb-4">
+    <input type="text" id="title" class="form-control" />
+    <label class="form-label" for="title">Title</label>
+  </div>
+
+ 
+  <!-- Message input -->
+  <div class="form-outline mb-4">
+    <textarea class="form-control" id="text" rows="3"></textarea>
+    <label class="form-label" for="text">Text</label>
+  </div>
+
+
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-primary btn-block mb-4">Post</button>
+</form>
+			</section>
+			<div class="text-center text mt-10">
+								<h1>MY BLOGS</h1>
+							</div>
+			<!--Section: Content-->
+			{{#each blogInfo}}
+			<div class="card m-5">
+				<div class="d-flex justify-content-end btn-container">
+  <button class="btn btn-info m-2" data-attribute="edit-btn" data-value="{{id}}" type="button"><i class="far fa-edit"></i></button>
+  <button class="btn btn-danger m-2" data-attribute="delete-btn" data-value="{{id}}" type="button"><i class="fas fa-trash-alt"></i></button>
+</div>
+				<div class="card-header d-flex justify-content-between flex-row">
+					<h2>{{title}}</h2>
+					<p>posted by {{user.first_name}} on {{formatDate createdAt}}</p>
+				</div>
+				<div class="card-body">
+					<blockquote class="blockquote mb-0">
+						<p>
+							{{contents}}
+						</p>
+						</footer>
+					</blockquote>
+				</div>
+				<div class="accordion">
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="headingOne">
+							<button
+								class="accordion-button"
+								type="button"
+								data-bs-toggle="collapse"
+								data-bs-target="#collapse{{id}}"
+								aria-expanded="false"
+								aria-controls="collapse{{id}}"
+							>
+								comments {{comments.length}}
+							</button>
+						</h2>
+						<div
+							id="collapse{{id}}"
+							class="accordion-collapse collapse show"
+							aria-labelledby="heading{{id}}"
+							data-bs-parent="#accordionExample"
+						>
+							<div class="accordion-body">
+								<div class="col-md-8 col-lg-6">
+    	<div class="card shadow-0 border" style="background-color: #f0f2f5;">     
+        <div class="form-outline mb-4">
+          <input type="text" id="addComment{{id}}" class="form-control" placeholder="Type comment..." />
+          <label class="form-label" for="addComment{{id}}">+ Add a comment</label>
+		  	
+		</div>
+        </div>
+		<div class="d-flex justify-content-end mt-2 pt-1">
+              <button type="submit" data-value-blog="{{id}}" class=" comment-btn btn btn-primary btn-sm">Post comment</button>
+            </div>
+	
+								{{#each comments}}
+							
+							 <div class="card my-3" >
+          <div class="card-body">
+            <div class="d-flex flex-start">
+             
+              <div class="w-100">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h6 class="text-primary fw-bold mb-0">
+                    {{user.first_name}}
+                    <span class="text-dark ms-2">{{text}}</span>
+                  </h6>
+                  <p class="mb-0">{{formatDate createdAt}}</p>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+					{{#if userDelete}}
+                  <p class="small mb-0" style="color: #aaa;">
+					
+                    <a href="#!" data-value="{{id}}" class="link-grey">Remove</a> •
+                  </p>
+				  {{/if}}
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+						{{/each}}
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+      {{/each}}
+		</main>
+
+	
+		<!--Footer-->
+		<footer class="bg-light text-lg-start">
+			<div class="text-center py-4 align-items-center">
+			
+			
+				<a
+					href="https://github.com/awarsame1996"
+					class="btn btn-primary m-1"
+					role="button"
+					rel="nofollow"
+					target="_blank"
+				>
+					<i class="fab fa-github"></i>
+				</a>
+			</div>
+
+			
+		</footer>
+		<!--Footer-->
+
+
+
